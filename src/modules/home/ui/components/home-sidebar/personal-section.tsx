@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useClerk } from "@clerk/nextjs";
+import { useAuth } from "@clerk/clerk-react";
 import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from "lucide-react";
 
 import {
@@ -26,17 +28,19 @@ const items = [
   },
   {
     title: "Todas as playlists",
-    url: "/feeds/trending",
+    url: "/playlist",
     icon: ListVideoIcon,
+    auth: true
   },
 ];
 
 export const PersonalSection = () => {
+  const { isSignedIn: signedIn } = useAuth();
+  const clerk = useClerk();
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>
-        Você
-      </SidebarGroupLabel>
+      <SidebarGroupLabel>Você</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => (
@@ -46,7 +50,12 @@ export const PersonalSection = () => {
                 tooltip={item.title}
                 asChild
                 isActive={false} // TODO: Change to look at current pathname
-                onClick={() => {}} // TODO: Do something on click
+                onClick={(e) => {
+                  if (!signedIn && item.auth) {
+                    e.preventDefault();
+                    return clerk.openSignIn();
+                  }
+                }}
               >
                 <Link className="flex items-center gap-4" href={item.url}>
                   <item.icon />
