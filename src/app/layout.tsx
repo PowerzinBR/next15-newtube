@@ -1,8 +1,11 @@
-import { cn } from "@/lib/utils";
 import "./globals.css";
 
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ptBR } from "@clerk/localizations";
 import { Roboto } from "next/font/google";
+
+import { cn } from "@/lib/utils";
 
 const inter = Roboto({
   subsets: ["latin"],
@@ -20,12 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={cn(inter.className, "antialiased")}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider afterSignOutUrl="/" localization={ptBR}>
+      <html lang="en">
+        <body
+          className={cn(inter.className, "antialiased")}
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

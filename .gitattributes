@@ -1,0 +1,19 @@
+* text=auto
+
+*.js    diff=javascript
+*.jsx   diff=javascript
+*.ts    diff=typescript
+*.tsx   diff=typescript
+*.json  diff=json
+*.css   diff=css
+*.scss  diff=scss
+*.md    diff=markdown
+
+.next/ export-ignore
+node_modules/ export-ignore
+.env* export-ignore
+*.log export-ignore
+
+package-lock.json merge=ours
+pnpm-lock.yaml merge=ours
+bun.lockb merge=ours
