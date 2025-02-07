@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev:all": "concurrently \"bun run dev\" \"bun run dev:webhook\" ",
     "dev": "next dev",
+    "dev:webhook": "ngrok http --url=giving-whale-rightly.ngrok-free.app 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -24,6 +26,7 @@
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "svix": "1.45.1",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -32,6 +35,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "9.1.2",
     "drizzle-kit": "0.30.3",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",

@@ -1,6 +1,7 @@
 # New Tube
-Welcome to the New Tube source code. A **Next.js** 15 + **React** 19 and **tRPC** project.
-
+Welcome to the New Tube source code. A **Next.js** 15 + **React** 19 and **tRPC** project. I've prepared a guide so you can clone and setup the project.
+# License
+MIT License.
 # Cloning the repository
 ## Requirements
 - Version control: Git
@@ -26,10 +27,38 @@ npm install
 Go to Clerk's dashboard and create a new project. Get the API keys then create a file for your enviroment variables, and paste the API keys there.
 
 3. Configure your database
-TBA
+Go to [Neon](https://neon.tech) and login into their platform. Create a database with whatever name you want and paste your `DATABASE_URL` key into your `.env.local` file. Make sure your .env file isn't in your commit history.
 
-4. Run the development server
+4. Push your schema into Neon
+> Commands may change depending on your package manager
+
+```bash
+npx drizzle-kit push
+```
+
+5. Run the development server
 > Commands may change depending on your package manager
 ```bash
 npm run dev
 ```
+
+
+# Webhook sync
+To create a local tunnel between **Clerk and Drizzle**, you need to:
+
+- Create a ngrok account (or any other local tunnel solution)
+- Obtain static domain (not required, but easier for development)
+- Add script to concurrently run local tunnel & app
+- Create the users webhook
+- Connect the webhook on the Clerk dashboard
+
+1. **Setup ngrok**: Create an account in ngrok dashboard. Get your **Authtoken** and add it. You can follow the ngrok documentation. After that go to ngrok dashboard and claim your free domain, then change the URL in our `dev:webhook` script.
+
+2. **Setup clerk**: Add your ngrok URL that you got before into an endpoint. To create an endpoint go inside of **Configure** section in your dashboard and click on Webhooks. Scroll down until you find **Endpoints** as an tab.
+- Note: The endpoint should be <NGROK_URL>/api/users/webhook
+
+3. **Setup your .env**: Make sure you add your signing secret, which you find after creating an webhook into your .env.local file (For this, you can copy the .env.example file and put your keys there)
+
+
+# License
+MIT License.
