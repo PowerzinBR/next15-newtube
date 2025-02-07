@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ptBR } from "@clerk/localizations";
 import { Roboto } from "next/font/google";
 
+import { TRPCProvider } from "@/trpc/client";
 import { cn } from "@/lib/utils";
 
 const inter = Roboto({
@@ -28,7 +29,9 @@ export default function RootLayout({
         <body
           className={cn(inter.className, "antialiased")}
         >
-          {children}
+          <TRPCProvider>
+            {children}
+          </TRPCProvider>
         </body>
       </html>
     </ClerkProvider>

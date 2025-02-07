@@ -1,7 +1,15 @@
-export default function Home() {
+import { Suspense } from "react";
+
+import { HydrateClient } from "@/trpc/server";
+
+import { PageClient } from "./client";
+
+export default async function Home() {
   return (
-    <div>
-      Loading videos in the future
-    </div>
+    <HydrateClient>
+      <Suspense fallback={<p>Loading...</p>}>
+        <PageClient />
+      </Suspense>
+    </HydrateClient>
   );
 }
