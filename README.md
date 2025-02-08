@@ -42,6 +42,14 @@ npx drizzle-kit push
 npm run dev
 ```
 
+## Upstash
+To set Upstash, you will need to:
+- Create an account (Google, Github, Password)
+- Create a database
+- Get the keys from your database and paste it at your local enviroment file
+
+Go to [Upstash](https://upstash.com) and log in. Make sure you have at least one database created. After, get the keys in your dashboard and paste them in your `.env.local` file.
+
 
 # Webhook sync
 To create a local tunnel between **Clerk and Drizzle**, you need to:
