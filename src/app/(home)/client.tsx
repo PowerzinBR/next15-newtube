@@ -9,7 +9,7 @@ export const PageClient = () => {
 
   return (
     <div>
-      Page client says {data?.greeting};
+      Page client says {data?.greeting}
     </div>
   )
 }

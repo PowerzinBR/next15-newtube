@@ -48,7 +48,7 @@ export async function POST(req: Request) {
   if (eventType == "user.created") {
     const { data } = evt;
 
-    const name = !data.last_name
+    const name = data.last_name !== null
       ? `${data.first_name} ${data.last_name}`
       : `${data.first_name}`;
 
