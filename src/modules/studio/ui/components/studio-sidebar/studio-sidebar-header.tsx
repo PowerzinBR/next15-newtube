@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 
-import { SidebarHeader, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
+import {
+  SidebarHeader,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from "@/components/ui/sidebar";
 import { UserAvatar } from "@/components/user-avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -10,14 +15,7 @@ export const StudioSidebarHeader = () => {
 
   const { state } = useSidebar();
 
-  if (!user) return null;
-
-  /* I don't use user.fullName directly because if a Google account has no last name,
-   * user.lastName will be null, which could result in a name like "User Null"
-   */
-  const userName = user.lastName ? user.fullName : user.firstName || "Usuário";
-
-  if (!user || !userName)
+  if (!user) {
     return (
       <SidebarHeader className="flex items-center justify-center pb-4">
         <Skeleton className="size-[122px] rounded-full" />
@@ -27,22 +25,26 @@ export const StudioSidebarHeader = () => {
         </div>
       </SidebarHeader>
     );
+  }
+
+  /* I don't use user.fullName directly because if a Google account has no last name,
+   * user.lastName will be null, which could result in a name like "User Null"
+   */
+  const userName = user.lastName ? user.fullName : user.firstName || "Usuário";
+
+  if (!userName) return null;
 
   if (state === "collapsed") {
-    <SidebarMenuItem>
-      <SidebarMenuButton tooltip="Seu perfil" asChild>
-        <Link href="/users/current">
-          <UserAvatar 
-            imageUrl={user.imageUrl}
-            name={userName}
-            size="xs"
-          />
-          <span className="text-sm">
-            Seu perfil
-          </span>
-        </Link>
-      </SidebarMenuButton>
-    </SidebarMenuItem>
+    return (
+      <SidebarMenuItem>
+        <SidebarMenuButton tooltip="Seu perfil" asChild>
+          <Link href="/users/current">
+            <UserAvatar imageUrl={user.imageUrl} name={userName} size="xs" />
+            <span className="text-sm">Seu perfil</span>
+          </Link>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    );
   }
 
   return (
