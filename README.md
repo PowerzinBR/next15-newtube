@@ -1,15 +1,24 @@
 # New Tube
 Welcome to the New Tube source code. A **Next.js** 15 + **React** 19 and **tRPC** project. I've prepared a guide so you can clone and setup the project.
+
+---
+
 # License
 MIT License.
+
 # Cloning the repository
+- Last edited: 02/11/25 by [Servi](https://github.com/PowerzinBR)
+---
 ## Requirements
 - Version control: Git
 - OS: Windows/macOS/Linux operational systems
 - Runtime: [Node.js v18.0.0](https://nodejs.org) or later
 - Package managers: [npm](https://npmjs.org)/[bun](https://bun.sh)/[yarn](https://yarnpkg.com)/[pnpm](https://pnpm.io)
 
-###
+---
+
+> [!NOTE]
+> Commands may change depending on your package manager
 
 1. Clone the repository
 
@@ -18,7 +27,6 @@ git clone https://github.com/PowerzinBR/next15-newtube.git
 ```
 
 2. Install dependencies
-> Commands may change depending on your package manager
 ```bash
 npm install
 ```
@@ -30,19 +38,19 @@ Go to Clerk's dashboard and create a new project. Get the API keys then create a
 Go to [Neon](https://neon.tech) and login into their platform. Create a database with whatever name you want and paste your `DATABASE_URL` key into your `.env.local` file. Make sure your .env file isn't in your commit history.
 
 4. Push your schema into Neon
-> Commands may change depending on your package manager
 
 ```bash
 npx drizzle-kit push
 ```
 
 5. Run the development server
-> Commands may change depending on your package manager
 ```bash
 npm run dev
 ```
 
 ## Upstash
+- Last edited: 02/11/25 by [Servi](https://github.com/PowerzinBR)
+---
 To set Upstash, you will need to:
 - Create an account (Google, Github, Password)
 - Create a database
@@ -52,6 +60,8 @@ Go to [Upstash](https://upstash.com) and log in. Make sure you have at least one
 
 
 # Webhook sync
+- Last edited: 02/11/25 by [Servi](https://github.com/PowerzinBR)
+---
 To create a local tunnel between **Clerk and Drizzle**, you need to:
 
 - Create a ngrok account (or any other local tunnel solution)
