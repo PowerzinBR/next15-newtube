@@ -34,16 +34,16 @@ npm install
 3. Configure your Clerk account
 Go to Clerk's dashboard and create a new project. Get the API keys then create a file for your enviroment variables, and paste the API keys there.
 
-3. Configure your database
+4. Configure your database
 Go to [Neon](https://neon.tech) and login into their platform. Create a database with whatever name you want and paste your `DATABASE_URL` key into your `.env.local` file. Make sure your .env file isn't in your commit history.
 
-4. Push your schema into Neon
+5. Push your schema into Neon
 
 ```bash
 npx drizzle-kit push
 ```
 
-5. Run the development server
+6. Run the development server
 ```bash
 npm run dev
 ```
